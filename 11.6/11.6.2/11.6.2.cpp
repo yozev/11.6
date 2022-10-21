@@ -45,7 +45,7 @@ std::string second_part(std::string str)
 int correct_string(std::string str)
 {
     int correct = 0;
-    std::string symbols = "!#$%&'*+-/=?^_`{|}~QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm.";
+    std::string symbols = "!#$%&'*+-/=?^_`{|}~QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
     int dots = 0;
     for (int i = 0; i < str.length(); i++)
     {
@@ -54,6 +54,39 @@ int correct_string(std::string str)
             if (symbols[j] == str[i])
             {
                 correct = 1;
+                //std::cout << i <<"find correct symbol\n";
+                break;
+            }
+            else
+            {
+               correct = 0;
+            }
+        }
+        if (str[0] == '.')
+            return correct = 0;
+        else if (i >= 2 && str[i] == '.' && str[i - 1] == '.')
+        {
+            return correct = 0;
+        }
+        else if (str[str.length() - 1] == '.')
+            return correct = 0;
+    }
+    return correct;
+}
+
+int correct_string_second(std::string str)
+{
+    int correct = 0;
+    std::string symbols = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
+    int dots = 0;
+    for (int i = 0; i < str.length(); i++)
+    {
+        for (int j = 0; j < symbols.length(); j++)
+        {
+            if (symbols[j] == str[i])
+            {
+                correct = 1;
+                //std::cout << i << "find correct symbol\n";
                 break;
             }
             else
@@ -62,13 +95,13 @@ int correct_string(std::string str)
             }
         }
         if (str[0] == '.')
-            correct = 0;
+            return correct = 0;
         else if (i >= 2 && str[i] == '.' && str[i - 1] == '.')
         {
-            correct = 0;
+            return correct = 0;
         }
         else if (str[str.length() - 1] == '.')
-            correct = 0;
+            return correct = 0;
     }
     return correct;
 }
@@ -85,7 +118,8 @@ int main()
     //std::cout << str1 << '\n';
     //std::cout << str2 << '\n';
     correct = correct_string(str1);
-    correct = correct_string(str2);
+    if (correct == 1)
+        correct = correct_string_second(str2);
 
     if (str1.length() + str2.length() != str.length() - 1)
     {
