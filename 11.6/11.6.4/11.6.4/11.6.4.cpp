@@ -25,15 +25,13 @@ int correct_input(std::string str)
 
 int correct_symbols(std::string str1, std::string str2, std::string str3)
 {
-    int X = 0, O = 0, dots = 0;
+    int X = 0, O = 0;
     for (int i = 0; i < str1.length(); i++)
     {
         if (str1[i] == 'X')
             X++;
         if (str1[i] == 'O')
             O++;
-        if (str1[i] == '.')
-            dots++;
     }
     for (int i = 0; i < str2.length(); i++)
     {
@@ -41,8 +39,6 @@ int correct_symbols(std::string str1, std::string str2, std::string str3)
             X++;
         if (str2[i] == 'O')
             O++;
-        if (str2[i] == '.')
-            dots++;
     }
     for (int i = 0; i < str3.length(); i++)
     {
@@ -50,8 +46,6 @@ int correct_symbols(std::string str1, std::string str2, std::string str3)
             X++;
         if (str3[i] == 'O')
             O++;
-        if (str3[i] == '.')
-            dots++;
     }
     if (X - O == 1 || X - O == 0)
     {
@@ -97,7 +91,7 @@ int who_is_winner(std::string str1, std::string str2, std::string str3)
         diagonal2 += str2[1];
             diagonal2 += str3[0];
 
-    std::string winner = "";
+    //std::string winner = "";
     winner += winer_line(str1);
     winner += winer_line(str2);
     winner += winer_line(str3);
@@ -106,7 +100,6 @@ int who_is_winner(std::string str1, std::string str2, std::string str3)
     winner += winer_line(column3);
     winner += winer_line(diagonal1);
     winner += winer_line(diagonal2);
-    std::cout << winner << "\n";
     if (winner == "X")
         return 1;
     else if (winner == "O")
@@ -125,7 +118,7 @@ int main()
 
     std::cout << "input game result:\n";
     std::cin >> str1 >> str2 >> str3;
-    std::cout << str1 + "  " << str2 + "  " << str3 + "  " << "\n";
+    //std::cout << str1 + "  " << str2 + "  " << str3 + "  " << "\n";
     
     int correct;
     correct = correct_input(str1);
@@ -139,9 +132,9 @@ int main()
     {
         winner = who_is_winner(str1, str2, str3);
         if (winner == 1 && correct != 3)
-            std::cout << "P winner\n";
+            std::cout << "Petya winner\n";
         else if (winner == 2)
-            std::cout << "V winner\n";
+            std::cout << "Vanya winner\n";
         else if (winner == 3)
             std::cout << "incorrect\n";
         else if (winner == 0)

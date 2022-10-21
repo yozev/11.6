@@ -131,6 +131,8 @@ int main()
 		cor = correct_numbers(str1, str2, str3, str4);
 		
 	}
-
-	std::cout << cor << "   " << str1 << str2 << str3 << str4 << "\n";
+	if (cor == 1)
+		std::cout << "Valid" << "\n";
+	else
+		std::cout << "Invalid\n";
 }

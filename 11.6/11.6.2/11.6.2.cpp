@@ -82,8 +82,8 @@ int main()
     std::cin >> str;
     str1 = first_part(str);
     str2 = second_part(str);
-    std::cout << str1 << '\n';
-    std::cout << str2 << '\n';
+    //std::cout << str1 << '\n';
+    //std::cout << str2 << '\n';
     correct = correct_string(str1);
     correct = correct_string(str2);
 
