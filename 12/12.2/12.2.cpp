@@ -7,76 +7,63 @@
 Вывод: 5.5 5.41 5.4 5.31 5.3 5.11 5.1 3.4 2.3 1.51 1.5 1.251 1.25 1.2 1.11*/
 #include <iostream>
 
-float sort(float str)
+/*void swap_float(float a, float b)
 {
-
-}
-
+    float c;
+    c = a;
+    a = b;
+    b = c;
+}*/
 
 void heapify(float arr[], int n, int i)
 {
     int largest = i;
-    // Инициализируем наибольший элемент как корень
-    int l = 2 * i + 1; // левый = 2*i + 1
-    int r = 2 * i + 2; // правый = 2*i + 2
-
- // Если левый дочерний элемент больше корня
-    if (l < n && arr[l] > arr[largest])
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+    if (l < n && arr[l] < arr[largest])
         largest = l;
-
-    // Если правый дочерний элемент больше, чем самый большой элемент на данный момент
-    if (r < n && arr[r] > arr[largest])
+    if (r < n && arr[r] < arr[largest])
         largest = r;
-
-    // Если самый большой элемент не корень
     if (largest != i)
     {
-        swap(arr[i], arr[largest]);
-
-        // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
+        //swap_float(arr[i], arr[largest]);
+        float temp;
+        temp = arr[largest];
+        arr[largest] = arr[i];
+        arr[i] = temp;
         heapify(arr, n, largest);
     }
 }
 
-// Основная функция, выполняющая пирамидальную сортировку
 void heapSort(float arr[], int n)
 {
-    // Построение кучи (перегруппируем массив)
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i);
-
-    // Один за другим извлекаем элементы из кучи
     for (int i = n - 1; i >= 0; i--)
     {
-        // Перемещаем текущий корень в конец
-        swap(arr[0], arr[i]);
-
-        // вызываем процедуру heapify на уменьшенной куче
+        //swap_float(arr[0], arr[i]);
+        float temp;
+        temp = arr[i];
+        arr[i] = arr[0];
+        arr[0] = temp;
         heapify(arr, i, 0);
     }
-}
-
-/* Вспомогательная функция для вывода на экран массива размера n*/
-void printArray(float arr[], int n)
-{
-    for (int i = 0; i < n; ++i)
-        cout << arr[i] << " ";
-    cout << "\n";
 }
 
 int main()
 {
     float arr[15];
     int n = 15;
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < n; i++)
     {
         std::cin >> arr[i];
     }
     
     heapSort(arr, n);
+    //swap_float(arr[1], arr[0]);
 
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < n; i++)
     {
-        std::cout << arr[i];
+        std::cout << arr[i] << "  ";
     }
 }
